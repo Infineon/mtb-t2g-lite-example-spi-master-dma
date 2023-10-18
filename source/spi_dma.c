@@ -7,7 +7,7 @@
 *
 *
 *******************************************************************************
-* Copyright 2022, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2022-2023, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -80,7 +80,7 @@ uint32_t configure_tx_dma(uint32_t* tx_buffer)
 
      const cy_stc_sysint_t intTxDma_cfg =
           {
-              .intrSrc      = ( (NvicMux2_IRQn << 16) | txDma_IRQ ),
+              .intrSrc      = ( (NvicMux2_IRQn << CY_SYSINT_INTRSRC_MUXIRQ_SHIFT) | txDma_IRQ ),
               .intrPriority = 7u
           };
 
@@ -162,7 +162,7 @@ uint32_t configure_rx_dma(uint32_t* rx_buffer)
 
      const cy_stc_sysint_t intRxDma_cfg =
           {
-              .intrSrc      = ( (NvicMux3_IRQn << 16) | rxDma_IRQ ),
+              .intrSrc      = ( (NvicMux3_IRQn << CY_SYSINT_INTRSRC_MUXIRQ_SHIFT) | rxDma_IRQ ),
               .intrPriority = 7u
           };
 

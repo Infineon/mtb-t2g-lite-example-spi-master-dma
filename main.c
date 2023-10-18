@@ -9,7 +9,7 @@
 *
 *
 *******************************************************************************
-* Copyright 2022, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2022-2023, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -50,6 +50,7 @@
 #include "spi_master.h"
 #include "spi_slave.h"
 #include "cybsp_types.h"
+
 
 /*******************************************************************************
 * Macros
@@ -161,7 +162,9 @@ int main(void)
 #endif /* #if ((SPI_MODE == SPI_MODE_BOTH) || (SPI_MODE == SPI_MODE_SLAVE)) */
 
     /* Disable D cache because DMA also reads descriptor in the SRAM */
+#if defined (CY_IP_M7CPUSS)
     SCB_DisableDCache();
+#endif
 
     /* Enable global interrupt */
     __enable_irq();
